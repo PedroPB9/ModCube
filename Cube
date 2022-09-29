@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Cube : MonoBehaviour
+{
+    //Referencing the gameobject's meshrenderer
+    public MeshRenderer Renderer;
+    private float rotateSpeed = 15f;
+
+    private float limit = 3.5f;
+    private float timeRate = 4f;
+    
+    
+    void Start()
+    {
+        //Modifies the position, giving a new instance of it, every time the program is started.
+        transform.position = new Vector3(2, 5, 3);
+        //Modifies the G.Object Scale.
+        transform.localScale = Vector3.one * 3.6f;
+        
+        
+        
+        
+    }
+    
+    void Update()
+    {
+        transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
+        
+        
+        if(Time.time > limit)
+        {
+            limit = Time.time + timeRate;
+            //Getting the instance of the first assigned material in the g.object's meshrenderes and storing it (only when the time given has elapsed).
+            Material material = Renderer.material;
+            material.color = new Color(Random.Range(0, 2.0f), Random.Range(0, 2.0f), Random.Range(0, 2.0f), Random.Range(0.4f, 2.0f));  
+        }
+    }
+}
